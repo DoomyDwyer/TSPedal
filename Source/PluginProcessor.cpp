@@ -142,6 +142,9 @@ void TSPedalAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
+    tone.setKnobs(toneValue, outputValue);
+    clipper.setKnob(driveValue);
+
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
     // Make sure to reset the state if your inner loop is processing
@@ -150,9 +153,17 @@ void TSPedalAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     // interleaved by keeping the same state.
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
-        auto* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data...
+        for (int n = 0; n < buffer.getNumSamples() ; ++n){
+            float x = buffer.getReadPointer(channel)[n];
+            float y = clipper.processSample(x, channel);
+            y = tone.processSample(y, channel);
+            if (effectOn){
+                buffer.getWritePointer(channel)[n] = y;
+            }
+            else{
+                buffer.getWritePointer(channel)[n] = x;
+            }
+        }
     }
 }
 

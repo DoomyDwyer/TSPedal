@@ -10,6 +10,9 @@
 
 #include <JuceHeader.h>
 
+#include "TSClipper.h"
+#include "TSTone.h"
+
 //==============================================================================
 /**
 */
@@ -58,6 +61,9 @@ public:
     float outputValue = 0.f;
     bool  effectOn = true;
 private:
+    TSTone tone;
+    TSClipper clipper;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TSPedalAudioProcessor)
 };

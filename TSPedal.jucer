@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="zVtaHY" name="TSPedal" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="1" jucerFormatVersion="1" cppLanguageStandard="14">
+              addUsingNamespaceToJuceHeader="1" jucerFormatVersion="1" cppLanguageStandard="14"
+              displaySplashScreen="1">
   <MAINGROUP id="n2R6dq" name="TSPedal">
     <GROUP id="{7DD324C5-240B-C3C1-38D5-5F1426B87186}" name="Source">
       <FILE id="fgWX4H" name="PluginProcessor.cpp" compile="1" resource="0"
